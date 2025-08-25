@@ -1,10 +1,35 @@
-
-import 'package:event_demo_mac/features/auth/presentation/screens/splashscreen.dart';
+import 'package:event_demo_mac/core/constants/shared_pref.dart';
+import 'package:event_demo_mac/features/auth/data/models/email_login.dart';
+import 'package:event_demo_mac/features/auth/data/repo/login_repo.dart';
+import 'package:event_demo_mac/features/auth/presentation/controller/bloc/auth_bloc.dart';
+import 'package:event_demo_mac/features/profile/data/repo/updateprofilerepo.dart';
+import 'package:event_demo_mac/features/profile/presentation/controller/bloc/profile_bloc.dart';
+import 'package:event_demo_mac/features/splashscreen/presentation/controller/bloc/splash_bloc.dart';
+import 'package:event_demo_mac/features/splashscreen/presentation/screens/splashscreen.dart';
+import 'package:event_demo_mac/features/user/botoomnavbar/presentation/controller/bloc/bottom_navigation_bar_bloc.dart';
+import 'package:event_demo_mac/features/user/botoomnavbar/presentation/screens/bottomNavbar.dart';
+import 'package:event_demo_mac/features/user/home/presentation/screens/home.dart';
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPref.init();
+
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => SplashBloc()),
+        BlocProvider(create: (context) => AuthBloc(loginrepo: LoginRepo())),
+        BlocProvider(create: (context) => ProfileBloc(Updateprofilerepo())),
+        BlocProvider(create: (context) => BottomNavigationBarBloc()),
+        // BlocProvider(
+        //   create: (context) => SubjectBloc(),
+        // ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -13,7 +38,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -34,8 +59,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  SplashScreen()
+      home: BottomNavBar(),
     );
   }
 }
-
