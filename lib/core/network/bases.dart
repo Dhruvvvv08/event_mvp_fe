@@ -13,7 +13,7 @@ import 'package:http_parser/http_parser.dart';
 //In this file all the API requests are created, we will call these requests for all the APIs
 
 //const String baseUrl = 'https://inspectionapi.austere.biz/inspection/api';
-const String baseUrl = 'http://192.168.29.248:4000/';
+const String baseUrl = 'http://13.126.72.208:3500/';
 http.Client client = http.Client();
 // final LocalStorageService _storageService = LocalStorageService();
 // final StorageService _storageService = StorageService();
@@ -92,6 +92,36 @@ Future<http.Response> postDataa<T>({
   return response;
 }
 
+
+
+
+
+Future<http.Response> postDataaRecuiter<T>({
+  required String url,
+  required T body,
+}) async {
+  Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
+  // final token = await _getToken();
+  //String sessionToken = SharedPref.pref!.getString(Preferences.token) ?? "";
+
+  // if (addToken) {
+  //   requestHeaders = appendAccessTokenWith({}, sessionToken);
+  // }
+
+  // else {
+  requestHeaders.addAll({
+    'Authorization': '${'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1MzYyNDU2ZC0wNGJmLTRiMmQtOTJkMy04OGQ5ODc4MDkzYmQiLCJlbWFpbCI6Im1hZGFhbmRocnV2NTFAZ21haWwuY29tIiwiaWF0IjoxNzU2NjcwNTEzLCJleHAiOjE3NTY3NTY5MTN9.MI6q-ctxi54P3SC0XqNhNTOS0Sk5DCOAIOtAqCPqSJA' ?? ""}'
+    
+    });
+
+  final response = await client.post(
+    Uri.parse(baseUrl + url),
+    headers: requestHeaders,
+    body: jsonEncode(body),
+  );
+
+  return response;
+}
 
 
 

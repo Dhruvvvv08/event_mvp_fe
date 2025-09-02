@@ -14,27 +14,37 @@ class _HomeEventState extends State<HomeEvent> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 60,horizontal: 16),
+          padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 16),
           child: Column(
             children: [
               ListView.builder(
-                
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
-               // padding: EdgeInsets.all(12),
+                // padding: EdgeInsets.all(12),
                 itemCount: 10,
                 itemBuilder: (context, index) {
                   // final job = jobs[index];
                   return Container(
                     decoration: BoxDecoration(
-color: Colors.white,
-border: Border.all(color: Colors.grey.shade200),
+                      color: Colors.white,
+                      border: Border.all(color: Colors.grey.shade200),
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.2), // shadow color
+                          spreadRadius: 1, // how wide the shadow spreads
+                          blurRadius: 6, // how soft the shadow looks
+                          offset: Offset(
+                            0,
+                            3,
+                          ), // horizontal & vertical movement
+                        ),
+                      ],
                     ),
-                  
+
                     // shape: RoundedRectangleBorder(
                     //   borderRadius: BorderRadius.circular(12),
                     // ),
-                   
                     margin: EdgeInsets.only(bottom: 12),
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
@@ -48,9 +58,8 @@ border: Border.all(color: Colors.grey.shade200),
                                 child: Text(
                                   "Need Volunteer for Arijit Singh Event",
                                   style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.w700,
-                               
                                   ),
                                 ),
                               ),
@@ -65,7 +74,7 @@ border: Border.all(color: Colors.grey.shade200),
                             ],
                           ),
                           SizedBox(height: 6),
-          
+
                           // Company & Rating
                           Row(
                             children: [
@@ -83,7 +92,7 @@ border: Border.all(color: Colors.grey.shade200),
                             ],
                           ),
                           SizedBox(height: 6),
-          
+
                           // Location
                           Row(
                             children: [
@@ -105,11 +114,15 @@ border: Border.all(color: Colors.grey.shade200),
                             ],
                           ),
                           SizedBox(height: 6),
-          
+
                           // Experience
                           Row(
                             children: [
-                              Icon(Icons.work, size: 16, color: Colors.grey[700]),
+                              Icon(
+                                Icons.work,
+                                size: 16,
+                                color: Colors.grey[700],
+                              ),
                               SizedBox(width: 4),
                               Text(
                                 "Experienced Preffered",
@@ -118,7 +131,7 @@ border: Border.all(color: Colors.grey.shade200),
                             ],
                           ),
                           SizedBox(height: 6),
-          
+
                           // Salary
                           Row(
                             children: [
@@ -135,7 +148,7 @@ border: Border.all(color: Colors.grey.shade200),
                             ],
                           ),
                           SizedBox(height: 6),
-          
+
                           // Skills
                           Wrap(
                             spacing: 6,
@@ -153,7 +166,7 @@ border: Border.all(color: Colors.grey.shade200),
                                     .toList(),
                           ),
                           SizedBox(height: 6),
-          
+
                           // Bottom row: vacancies & posted ago
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,

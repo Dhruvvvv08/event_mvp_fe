@@ -11,5 +11,6 @@ class Prefrences{
   Prefrences._();
   static const String userId="userId";
   static const String token="token";
-  static const bool iisNewuser=false;
+  static const String isnewuser="isNewUser";
+
 }

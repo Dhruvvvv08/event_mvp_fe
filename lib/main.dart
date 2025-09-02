@@ -2,8 +2,14 @@ import 'package:event_demo_mac/core/constants/shared_pref.dart';
 import 'package:event_demo_mac/features/auth/data/models/email_login.dart';
 import 'package:event_demo_mac/features/auth/data/repo/login_repo.dart';
 import 'package:event_demo_mac/features/auth/presentation/controller/bloc/auth_bloc.dart';
+import 'package:event_demo_mac/features/intro/presentation/screens/introsignup.dart';
 import 'package:event_demo_mac/features/profile/data/repo/updateprofilerepo.dart';
 import 'package:event_demo_mac/features/profile/presentation/controller/bloc/profile_bloc.dart';
+import 'package:event_demo_mac/features/recuiter/addevent/data/repo/addeventrepo.dart';
+import 'package:event_demo_mac/features/recuiter/addevent/presentation/controller/bloc/addevent_bloc.dart';
+import 'package:event_demo_mac/features/recuiter/addevent/presentation/screens/addeventUI.dart';
+import 'package:event_demo_mac/features/recuiter/bottomnavbar/presentation/screens/bottomnavbarRecuiter.dart';
+import 'package:event_demo_mac/features/recuiter/request/presentation/controller/bloc/request_recuiter_bloc.dart';
 import 'package:event_demo_mac/features/splashscreen/presentation/controller/bloc/splash_bloc.dart';
 import 'package:event_demo_mac/features/splashscreen/presentation/screens/splashscreen.dart';
 import 'package:event_demo_mac/features/user/botoomnavbar/presentation/controller/bloc/bottom_navigation_bar_bloc.dart';
@@ -24,6 +30,8 @@ void main() async {
         BlocProvider(create: (context) => ProfileBloc(Updateprofilerepo())),
         BlocProvider(create: (context) => BottomNavigationBarBloc()),
         // BlocProvider(
+        BlocProvider(create: (context)=>AddeventBloc(Addeventrepo())),
+        BlocProvider(create: (context)=>RequestRecuiterBloc()),
         //   create: (context) => SubjectBloc(),
         // ),
       ],
@@ -59,7 +67,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: BottomNavBar(),
+      home: GetStartedScreen(),
     );
   }
 }

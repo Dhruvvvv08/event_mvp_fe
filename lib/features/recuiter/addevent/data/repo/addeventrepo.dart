@@ -1,18 +1,17 @@
-import 'dart:io';
-
 import 'package:event_demo_mac/core/network/bases.dart';
 import 'package:event_demo_mac/core/network/error_handling.dart';
-import 'package:event_demo_mac/features/user/home/data/models/getalleventsmodel.dart';
 
-class Homerepo {
-  Future<OnComplete<GetallEvents>> getevents() async {
+import '../models/addevent.dart';
+
+class Addeventrepo {
+    Future<OnComplete<AddEvent>> uploadevent(final Map body) async {
     try {
       ApiResponse response = await apiRequest(
-        request: getdataaa(url: "post/get-all"),
+        request: postDataaRecuiter(body: body,url: "post"),
       );
 
       if (response.success == true) {
-        return OnComplete.success(GetallEvents.fromJson(response.result));
+        return OnComplete.success(AddEvent.fromJson(response.result));
       } else {
         return OnComplete.error(response.message ?? "Service Not Available");
       }

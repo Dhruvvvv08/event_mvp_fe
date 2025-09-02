@@ -35,6 +35,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       SharedPref.prefs?.setString(Prefrences.token, token??"");
       print("Token saved to Shared Preferences: $token");
 
+    final bool? isNewUser = res.data?.isNewUser;
+    SharedPref.prefs?.setBool(Prefrences.isnewuser, isNewUser ?? false);
+    print(isNewUser);
+    
+
+
       } else {
         emit(
           otpverifyfailed(message: res.message ?? "OTP verification failed"),

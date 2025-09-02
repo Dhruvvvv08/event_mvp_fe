@@ -17,6 +17,7 @@ class TitledInputField extends StatefulWidget {
   final TextInputType keyboardType;
   final TextEditingController? textEditingController;
   final Color? textColor;
+    final Color? fillColor;
   final bool isTextObscured;
   final bool isSuffixIcon;
   final Widget? suffixIcon;
@@ -55,6 +56,7 @@ class TitledInputField extends StatefulWidget {
     this.isSuffixIcon = false,
     this.suffixIcon,
     this.onSuffixClick,
+    this.fillColor,
     this.isAutoFocus = false,
     this.validator,
     this.isFinalKeyboard = false,
@@ -109,7 +111,7 @@ class _TitledInputFieldState extends State<TitledInputField> {
         //     )),
         const SizedBox(height: 6),
         TextFormField(
-        
+
           autofillHints: widget.autoFillHints,
           maxLength: widget.maxLength,
           enabled: widget.enable,
@@ -149,7 +151,7 @@ class _TitledInputFieldState extends State<TitledInputField> {
           },
           inputFormatters: widget.inputFormatters,
           decoration: InputDecoration(
-            
+            fillColor: widget.fillColor,
             counterText: '',
             prefix: widget.prefix,
             isDense: true,
